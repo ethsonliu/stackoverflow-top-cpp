@@ -1,6 +1,6 @@
 # Stackoverflow Top Cpp
 
-对 Stackoverflow 上的高票 c/cpp 问题的中文翻译。
+对 Stackoverflow 上的高票 c/cpp 问题的中文翻译和总结。
 
 问题来源于下面的两个链接：
 
