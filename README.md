@@ -4,8 +4,8 @@
 
 问题来源于下面的两个链接：
 
- 1. https://stackoverflow.com/questions/tagged/c%2b%2b
- 2. https://stackoverflow.com/questions/tagged/c
+ 1. <https://stackoverflow.com/questions/tagged/c%2b%2b?tab=Votes>
+ 2. <https://stackoverflow.com/questions/tagged/c?tab=Votes>
 
  注意：
  - 每个问题中，【最佳回答】表示 “已被采纳的回答”，如果没有任何答案被采纳，就采用最高票的回答
