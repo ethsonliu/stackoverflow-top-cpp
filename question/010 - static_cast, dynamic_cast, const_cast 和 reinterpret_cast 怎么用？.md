@@ -13,4 +13,6 @@
 
 ## 最佳回答
 
-**`static_cast`** 是一个很有用的转换，建议能用就用。
+**`static_cast`** 是一个很有用的转换，建议能用就用。它可以用于那些通常的隐式转换（比如`int`转`float`，指针转`void*`）。
+
+在转换类对象为另一个类型的时候，`static_cast`会自动调用它的显示/隐式转换函数（比如`class Base{...} base; int i = static_cast<int>(base);`）
