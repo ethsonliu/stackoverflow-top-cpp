@@ -1,13 +1,10 @@
 # Stackoverflow Top Cpp
 
-对 Stackoverflow 上的高票 c/cpp 问题的中文翻译和总结。
-
-问题来源于下面的两个链接：
+问题皆来源于下面的两个链接：
 
  1. <https://stackoverflow.com/questions/tagged/c%2b%2b?tab=Votes>
  2. <https://stackoverflow.com/questions/tagged/c?tab=Votes>
+ 
+stackoverflow 上的那些高票问题更像是实用的编程指导和编程技术讲解，此项目就是对那些高票 c/cpp 问题的翻译、答案汇总和个人总结。
 
- 注意：
- - 每个问题中，【最佳回答】表示 “已被采纳的回答”，如果没有任何答案被采纳，就采用最高票的回答
- - 不会像翻译软件那样逐字逐句地原文翻译，会适当地“改头换尾”和“添油加醋”，以保证语句通顺，文风白话
- - 因个人能力有限，有些内容可能翻译的不准确或者不知如何翻译（会以原文贴出，并作说明），可以 Issue 或者 Pull requests 协助
+注意，这个项目并不只是单纯地把问题之下的那些回答翻译出来，而是只翻译和汇总那些回答中有价值的，同时包括其它技术网站、个人博客等等相似问题的回答。
