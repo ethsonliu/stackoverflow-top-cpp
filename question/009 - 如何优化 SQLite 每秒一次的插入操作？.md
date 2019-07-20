@@ -315,7 +315,27 @@ Imported 864913 records in 10.94 seconds
 
 频率约为 79,000 条每秒。
 
+**总结**
 
+实验结果已说明一切了，实际应用各取所需即可。
+
+值得一提的是，如果加入索引（Index）的顺序不同也会导致速度有所差异。在实验八的基础上，我们加入索引，
+
+```c++
+sqlite3_exec(db, "CREATE  INDEX 'TTC_Stop_Index' ON 'TTC' ('Stop')", NULL, NULL, &sErrMsg);
+sqlite3_exec(db, "BEGIN TRANSACTION", NULL, NULL, &sErrMsg);
+...
+```
+
+先创建索引，再插入数据：输出为`Imported 864913 records in 18.13 seconds`。
+
+```c++
+..
+sqlite3_exec(db, "END TRANSACTION", NULL, NULL, &sErrMsg);
+sqlite3_exec(db, "CREATE  INDEX 'TTC_Stop_Index' ON 'TTC' ('Stop')", NULL, NULL, &sErrMsg);
+```
+
+先插入数据，再创建索引：输出为`Imported 864913 records in 13.66 seconds`。
 
 ## 回答
 
