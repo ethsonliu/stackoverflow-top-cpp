@@ -303,7 +303,7 @@ Imported 864913 records in 8.94 seconds
 
 **实验九：在实验七的基础上，使用 In-Memory Databases**
 
-数据库定义在内存中（除非有特殊用途，否则还是乖乖地定义在磁盘上），
+数据库定义在内存中（除非有特殊用途，否则还是建议乖乖地定义在磁盘上），
 
 ```c++
 #define DATABASE ":memory:"
