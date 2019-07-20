@@ -350,4 +350,4 @@ sqlite3_exec(db, "CREATE  INDEX 'TTC_Stop_Index' ON 'TTC' ('Stop')", NULL, NULL,
 5. 如果是并发访问 SQLite 的话，需要注意，在执行写入操作时整个数据库都会被锁定，尽管有多个读取。在新的 SQLite 版本中增加了一个 [WAL（Write Ahead Logging）](https://www.cnblogs.com/frydsh/archive/2013/04/13/3018666.html)，这已经有所改进。
 6. 充分节省空间，因为更小的数据库操作也会更快。例如，如果有键值对，可以尝试将键设为 INTEGER PRIMARY KEY，这可以替换表中隐含的唯一行号列。
 7. 如果使用了多线程，则可以尝试使用 [共享页面缓存](http://sqlite.org/c3ref/enable_shared_cache.html)，这将允许在线程之间共享加载的页面，可以避免昂贵的 I/O 操作。
-8. [不要使用 !feof(file)(https://stackoverflow.com/q/5431941/6850771)。
+8. [不要使用 !feof(file)](https://stackoverflow.com/q/5431941/6850771)。
