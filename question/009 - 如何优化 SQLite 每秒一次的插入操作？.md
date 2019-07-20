@@ -341,3 +341,13 @@ sqlite3_exec(db, "CREATE  INDEX 'TTC_Stop_Index' ON 'TTC' ('Stop')", NULL, NULL,
 
 ## 回答
 
+几点建议：
+
+1. 将插入/更新放入事务中。
+2. 对于旧版本的 SQLite，考虑修改 journal_mode，置为 OFF 可以显著提高插入速度，如果你不是太担心数据库可能会被破坏的话。请注意，在较新版本中，`OFF/MEMORY`的设置对于应用程序级别的崩溃是不安全的（译注：这句我也不太懂）。
+3. 修改页面大小 page_size。较大的页面尺寸可以使读取和写入速度更快。注意，数据库会消耗更多的内存。
+4. 如果有索引的话，请在插入数据后再创建索引，因为这比先创建索引再插入数据快。
+5. 如果是并发访问 SQLite 的话，需要注意，在执行写入操作时整个数据库都会被锁定，尽管有多个读取。在新的 SQLite 版本中增加了一个 [WAL（Write Ahead Logging）](https://www.cnblogs.com/frydsh/archive/2013/04/13/3018666.html)，这已经有所改进。
+6. 充分节省空间，因为更小的数据库操作也会更快。例如，如果有键值对，可以尝试将键设为 INTEGER PRIMARY KEY，这可以替换表中隐含的唯一行号列。
+7. 如果使用了多线程，则可以尝试使用[共享页面缓存](http://sqlite.org/c3ref/enable_shared_cache.html)，这将允许在线程之间共享加载的页面，可以避免昂贵的 I/O 操作。
+8. [不要使用 !feof(file)(https://stackoverflow.com/q/5431941/6850771)。
