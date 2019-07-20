@@ -351,3 +351,8 @@ sqlite3_exec(db, "CREATE  INDEX 'TTC_Stop_Index' ON 'TTC' ('Stop')", NULL, NULL,
 6. 充分节省空间，因为更小的数据库操作也会更快。例如，如果有键值对，可以尝试将键设为 INTEGER PRIMARY KEY，这可以替换表中隐含的唯一行号列。
 7. 如果使用了多线程，则可以尝试使用 [共享页面缓存](http://sqlite.org/c3ref/enable_shared_cache.html)，这将允许在线程之间共享加载的页面，可以避免昂贵的 I/O 操作。
 8. [不要使用 !feof(file)](https://stackoverflow.com/q/5431941/6850771)。
+
+类似的问题我也提过，链接为：
+
+- <https://stackoverflow.com/questions/784173/what-are-the-performance-characteristics-of-sqlite-with-very-large-database-files>
+- <https://stackoverflow.com/questions/768708/are-there-known-issues-with-using-sqlite-and-file-locking-on-different-platforms>
