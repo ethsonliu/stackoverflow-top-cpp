@@ -121,7 +121,7 @@ int *p = reinterpret_cast<int*>(100);
 p = reinterpret_cast<int*>(new A(25, 96));
 ```
 
-**`(type)value`和`type(value)`**
+**`(type)value`和`type(value)`** 其实是一个意思，只是写法风格的差异而已。它的功能涵盖了上面四种`*_cast`的所有功能，它的使用需要完全由程序员自己把控。
 
 ## 参考
 
