@@ -23,4 +23,38 @@
 
 **dynamic_cast** 是动态转换，会在运行期借助 RTTI 进行类型转换（这就要求基类必须包含虚函数），主要用于类层次间的下行转换（即基类指针或引用转换成子类表示）。对于指针，如果转换失败将返回 NULL；对于引用，如果转换失败将抛出 std::bad_cast 异常。
 
+```c++
+class Base { };
+class Derived : public Base { };
+ 
+Base a, *ptr_a;
+Derived b, *ptr_b;
+ 
+ptr_a = dynamic_cast<Base *>(&b);  // 成功
+ptr_b = dynamic_cast<Derived *>(&a);  // 失败，因为基类无虚函数
+```
 
+```c++
+class Base { virtual void dummy() {} }; // polymorphic class
+class Derived : public Base { int a; }; // so is this
+ 
+Base *ptr_a = new Derived{};
+Base *ptr_b = new Base{};
+ 
+Derived *ptr_c = nullptr;
+Derived *ptr_d = nullptr;
+ 
+ptr_c = dynamic_cast<Derived *>(ptr_a);  // Fine
+ptr_d = dynamic_cast<Derived *>(ptr_b);  // ptr_d will be NULL
+ 
+// Check if downcasting succeeded
+if (ptr_c != nullptr) {
+	// ptr_a actually points to a Derived object 
+}
+ 
+if (ptr_d != nullptr) {
+    // ptr_b actually points to a Derived object 
+}
+```
+
+**const_cast** 主要用来修改类型的 const 或 volatile 属性。
