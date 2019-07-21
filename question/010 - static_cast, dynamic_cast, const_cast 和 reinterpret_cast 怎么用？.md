@@ -11,7 +11,7 @@
 - C 语言风格类型转化`(type)value`
 - 函数式风格类型转换`type(value)`
 
-## 最佳回答
+## 回答
 
 **`static_cast`** 是静态转换的意思，也就是在编译期间转换，转换失败的话会抛出一个编译错误。主要用于，
 
@@ -122,5 +122,10 @@ p = reinterpret_cast<int*>(new A(25, 96));
 ```
 
 
+## 参考
 
+- <https://www.quora.com/How-do-you-explain-the-differences-among-static_cast-reinterpret_cast-const_cast-and-dynamic_cast-to-a-new-C++-programmer>
+- <https://www.cnblogs.com/chio/archive/2007/07/18/822389.html>
+- <http://c.biancheng.net/cpp/biancheng/view/3297.html>
+- <https://blog.csdn.net/bboyfeiyu/article/details/9057447>
 
