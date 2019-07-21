@@ -41,7 +41,7 @@ void *p2 = static_cast<void*>(p1);  // 将具体类型指针，转换为 void �
 double real= static_cast<double>(c);  // 调用类型转换函数
 ```
 
-**dynamic_cast** 是动态转换，会在运行期借助 RTTI 进行类型转换（这就要求基类必须包含虚函数），主要用于类层次间的下行转换（即基类指针或引用转换成子类表示）。对于指针，如果转换失败将返回 NULL；对于引用，如果转换失败将抛出 std::bad_cast 异常。
+**`dynamic_cast`** 是动态转换，会在运行期借助 RTTI 进行类型转换（这就要求基类必须包含虚函数），主要用于类层次间的下行转换（即基类指针或引用转换成子类表示）。对于指针，如果转换失败将返回 NULL；对于引用，如果转换失败将抛出 std::bad_cast 异常。
 
 ```c++
 class Base { };
@@ -77,7 +77,7 @@ if (ptr_d != nullptr) {
 }
 ```
 
-**const_cast** 主要用来修改类型的 const 或 volatile 属性。
+**`const_cast`** 主要用来修改类型的 const 或 volatile 属性。
 
 ```c++
 int a = 5;
@@ -97,7 +97,7 @@ int* pX = const_cast<int*>(pA); // 去掉 const 属性
 *pX = 10 // 是否会真正地修改结果未知，因为对于 a 来说，编译器一般在编译的时候会把它放进常量表中
 ```
 
-**reinterpret_cast** 是重新解释的意思，顾名思义，reinterpret_cast 这种转换仅仅是对二进制位的重新解释，不会借助已有的转换规则对数据进行调整，非常简单粗暴，所以风险很高。
+**`reinterpret_cast`** 是重新解释的意思，顾名思义，reinterpret_cast 这种转换仅仅是对二进制位的重新解释，不会借助已有的转换规则对数据进行调整，非常简单粗暴，所以风险很高。
 
 reinterpret_cast 可以认为是 static_cast 的一种补充，一些 static_cast 不能完成的转换，就可以用 reinterpret_cast 来完成。例如两个具体类型指针之间的转换、int 和指针之间的转换（有些编译器只允许 int 转指针，不允许反过来）。
 
@@ -121,6 +121,7 @@ int *p = reinterpret_cast<int*>(100);
 p = reinterpret_cast<int*>(new A(25, 96));
 ```
 
+**`(type)value`和`type(value)`**
 
 ## 参考
 
