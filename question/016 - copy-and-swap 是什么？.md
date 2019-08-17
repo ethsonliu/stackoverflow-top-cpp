@@ -80,8 +80,31 @@ dumb_array& operator=(const dumb_array& other)
 }
 ```
 
-相信大多数人都是这样写的，但这种写法存在一些问题。
+相信大多数人都是这样写的，但这种写法会存在三个问题。
 
-序号（1）处：判断是否等于自身，这种检查有两个目的。一，防止做无用功；二，防止自赋值时出现问题（看上面的代码就知道了）。但是这种检查没什么意义，因为很少出现，加上它反而徒增消耗。（译注：我随后查看了 boost、folly 和 MSVC 的实现，它们都加上了自判断检查。）
+1：判断是否等于自身，这种检查有两个目的。一，防止做无用功；二，防止自赋值时出现问题（看上面的代码就知道了）。但是这种检查没什么意义，因为很少出现，加上它反而徒增消耗。（译注：我随后查看了 boost、folly 和 MSVC 的实现，它们都加上了自判断检查。）
 
+2：仅提供了基本异常安全保证。如果在`new`的时候抛出异常，此时`*this`的内容已被修改，无法还原至开始状态。如果想要强异常安全保证，可以这样写，
+
+```c+
+dumb_array& operator=(const dumb_array& other)
+{
+    if (this != &other) // (1)
+    {
+        // get the new data ready before we replace the old
+        std::size_t newSize = other.mSize;
+        int* newArray = newSize ? new int[newSize]() : nullptr; // (3)
+        std::copy(other.mArray, other.mArray + newSize, newArray); // (3)
+
+        // replace the old data (all are non-throwing)
+        delete [] mArray;
+        mSize = newSize;
+        mArray = newArray;
+    }
+
+    return *this;
+}
+```
+
+3：
 
