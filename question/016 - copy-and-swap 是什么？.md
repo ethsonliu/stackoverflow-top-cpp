@@ -110,3 +110,31 @@ dumb_array& operator=(const dumb_array& other)
 
 >译注：评论区有人指出“一个类管理多个资源”这种做法是不提倡的，作者也表示同意，上面那句话之所以那么说，我觉得更多是突出“冗余膨胀”四字，读者可以不必在此处过多纠结。至于为何这种做法是不提倡的，作者也给出了回答：[单一功能原则](https://zh.wikipedia.org/wiki/%E5%8D%95%E4%B8%80%E5%8A%9F%E8%83%BD%E5%8E%9F%E5%88%99)。
 
+正确的做法是这样的，
+
+```c++
+class dumb_array
+{
+public:
+    // ...
+
+    friend void swap(dumb_array& first, dumb_array& second) // nothrow
+    {
+        // enable ADL (not necessary in our case, but good practice)
+        using std::swap;
+
+        // by swapping the members of two objects,
+        // the two objects are effectively swapped
+        swap(first.mSize, second.mSize);
+        swap(first.mArray, second.mArray);
+    }
+
+    dumb_array& operator=(dumb_array other) // (1)
+    {
+        swap(*this, other); // (2)
+
+        return *this;
+    }
+};
+```
+
