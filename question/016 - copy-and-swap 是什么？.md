@@ -110,7 +110,7 @@ dumb_array& operator=(const dumb_array& other)
 
 >译注：评论区有人指出“一个类管理多个资源”这种做法是不提倡的，作者也表示同意，上面那句话之所以那么说，我觉得更多是突出“冗余膨胀”四字，读者可以不必在此处过多纠结。至于为何这种做法是不提倡的，作者也给出了回答：[单一功能原则](https://zh.wikipedia.org/wiki/%E5%8D%95%E4%B8%80%E5%8A%9F%E8%83%BD%E5%8E%9F%E5%88%99)。
 
-正确的做法是这样的，
+copy-and-swap 就可以同时解决上面的三个问题，做法是这样的，
 
 ```c++
 class dumb_array
@@ -137,4 +137,32 @@ public:
     }
 };
 ```
+
+（其中，swap 被定义为 public friend，理由可参见 [https://stackoverflow.com/questions/5695548/public-friend-swap-member-function](https://stackoverflow.com/questions/5695548/public-friend-swap-member-function) 和 Effective C++ 条款 25。）
+
+注意到 `dumb_array& operator=(dumb_array other)` 的参数是值传递，不应该是引用传递么？就像下面这样，
+
+```c++
+dumb_array& operator=(const dumb_array& other)
+{
+    dumb_array temp(other);
+    swap(*this, temp);
+
+    return *this;
+}
+```
+
+因为无法让编译器充分发挥它优化的优势，可以参考，
+
+- [引用传递的弊端](https://stackoverflow.com/questions/261567/function-parameters-copy-or-pointer/261598#261598)
+- [aliasing 的解释](https://zh.wikipedia.org/wiki/%E5%88%AB%E5%90%8D_(%E8%AE%A1%E7%AE%97))
+- [aliasing 的弊端](https://stackoverflow.com/questions/9709261/what-is-aliasing-and-how-does-it-affect-performance)
+
+现在来看看它是怎么解决上面那三个问题的。
+
+值传递可以在进入函数体内部的时候就已经实现对象的复制，内存的申请，避免了代码冗余，而无异常的 swap 可以提供强异常安全保证，至于自赋值，这里就更不存在了，因为函数体内部的对象完全是一个新对象。
+
+
+
+
 
