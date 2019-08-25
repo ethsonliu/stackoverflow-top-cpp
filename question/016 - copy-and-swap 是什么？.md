@@ -17,7 +17,7 @@
 
 那 copy-and-swap 是怎么实现的呢？大致思路是：先用复制构造函数创建一个副本，然后利用函数`swap`交换其成员数据，当作用域退出，副本的析构函数会自动调用。这里有三个注意点：一，复制构造函数应该是可用的；二，这里的`swap`并非指`std::swap`，而是需要我们自己写的，而且需要保证`swap`不会抛出异常；三：析构函数也应该是可用的。
 
-我们以一个例子来更深入地理解。
+#### 以一个例子来更深入地理解
 
 我们先定义一个类，管理一个动态数组，并实现它的复制构造函数和析构函数，
 
@@ -58,7 +58,9 @@ private:
 };
 ```
 
-但想让上面的类做的更好，还需要一个赋值运算符（=），如下，
+但想让上面的类做的更好，还需要一个赋值运算符（=）。
+
+#### 大多数人（错误）的做法
 
 ```c++
 // the hard part
@@ -110,6 +112,8 @@ dumb_array& operator=(const dumb_array& other)
 
 >译注：评论区有人指出“一个类管理多个资源”这种做法是不提倡的，作者也表示同意，上面那句话之所以那么说，我觉得更多是突出“冗余膨胀”四字，读者可以不必在此处过多纠结。至于为何这种做法是不提倡的，作者也给出了回答：[单一功能原则](https://zh.wikipedia.org/wiki/%E5%8D%95%E4%B8%80%E5%8A%9F%E8%83%BD%E5%8E%9F%E5%88%99)。
 
+#### 正确的做法
+
 copy-and-swap 就可以同时解决上面的三个问题，做法是这样的，
 
 ```c++
@@ -142,9 +146,9 @@ public:
 
 值传递可以在进入函数体内部的时候就已经实现对象的复制，内存的申请，避免了代码冗余，而无异常的 swap 可以提供强异常安全保证，至于自赋值，这里就更不存在了，因为函数体内部的对象完全是一个新对象。
 
-（其中，swap 被定义为 public friend，理由可参见 [https://stackoverflow.com/questions/5695548/public-friend-swap-member-function](https://stackoverflow.com/questions/5695548/public-friend-swap-member-function) 和 Effective C++ 条款 25。）
+其中，swap 被定义为 public friend，理由可参见 [https://stackoverflow.com/questions/5695548/public-friend-swap-member-function](https://stackoverflow.com/questions/5695548/public-friend-swap-member-function) 和 Effective C++ 条款 25。
 
-另外注意到 `dumb_array& operator=(dumb_array other)` 的参数是值传递，不应该是引用传递么？就像下面这样，
+另外有人疑问 `dumb_array& operator=(dumb_array other)` 的参数是值传递，也可以换成引用传递嘛，就像下面这样，
 
 ```c++
 dumb_array& operator=(const dumb_array& other)
@@ -156,15 +160,37 @@ dumb_array& operator=(const dumb_array& other)
 }
 ```
 
-因为无法让编译器充分发挥它优化的优势，可以参考，
+其实这个做法有点想当然，因为这样无法让编译器充分发挥它优化的优势，具体可以参考，
 
 - [引用传递的弊端](https://stackoverflow.com/questions/261567/function-parameters-copy-or-pointer/261598#261598)
 - [aliasing 的解释](https://zh.wikipedia.org/wiki/%E5%88%AB%E5%90%8D_(%E8%AE%A1%E7%AE%97))
 - [aliasing 的弊端](https://stackoverflow.com/questions/9709261/what-is-aliasing-and-how-does-it-affect-performance)
 
+#### 在 C++ 11 中有何变化
 
+进入 C++ 11 时代，三法则就变为了五法则，多了[移动语义](https://stackoverflow.com/questions/3106110/what-is-move-semantics)。依旧是上面的代码，移动构造函数实现如下：
 
+```c++
+class dumb_array
+{
+public:
+    // ...
 
+    // move constructor
+    dumb_array(dumb_array&& other)
+        : dumb_array() // initialize via default constructor, C++11 only
+    {
+        swap(*this, other);
+    }
 
+    // ...
+};
+```
 
+在 swap 之前先调用默认构造函数初始化自身（例如，`mArray` 置为 `nullptr`，`mSize` 置为 0），这样 swap 之后，那个右值可以安全的进行析构。
 
+而对于移动赋值（=），上面的 copy-and-swap 已经替我们做了，因为我们用的是值传递。
+
+```c++
+dumb_array& operator=(dumb_array other)
+```
