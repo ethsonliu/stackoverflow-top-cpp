@@ -168,7 +168,7 @@ dumb_array& operator=(const dumb_array& other)
 
 #### 在 C++ 11 中有何变化
 
-进入 C++ 11 时代，三法则就变为了五法则，多了[移动语义](https://stackoverflow.com/questions/3106110/what-is-move-semantics)。依旧是上面的代码，移动构造函数实现如下：
+进入 C++ 11 时代，三法则就变为了五法则，多了 [移动语义](https://stackoverflow.com/questions/3106110/what-is-move-semantics)。依旧是上面的代码，移动构造函数实现如下：
 
 ```c++
 class dumb_array
