@@ -138,9 +138,13 @@ public:
 };
 ```
 
+现在来看看它是怎么解决上面那三个问题的。
+
+值传递可以在进入函数体内部的时候就已经实现对象的复制，内存的申请，避免了代码冗余，而无异常的 swap 可以提供强异常安全保证，至于自赋值，这里就更不存在了，因为函数体内部的对象完全是一个新对象。
+
 （其中，swap 被定义为 public friend，理由可参见 [https://stackoverflow.com/questions/5695548/public-friend-swap-member-function](https://stackoverflow.com/questions/5695548/public-friend-swap-member-function) 和 Effective C++ 条款 25。）
 
-注意到 `dumb_array& operator=(dumb_array other)` 的参数是值传递，不应该是引用传递么？就像下面这样，
+另外注意到 `dumb_array& operator=(dumb_array other)` 的参数是值传递，不应该是引用传递么？就像下面这样，
 
 ```c++
 dumb_array& operator=(const dumb_array& other)
@@ -158,9 +162,7 @@ dumb_array& operator=(const dumb_array& other)
 - [aliasing 的解释](https://zh.wikipedia.org/wiki/%E5%88%AB%E5%90%8D_(%E8%AE%A1%E7%AE%97))
 - [aliasing 的弊端](https://stackoverflow.com/questions/9709261/what-is-aliasing-and-how-does-it-affect-performance)
 
-现在来看看它是怎么解决上面那三个问题的。
 
-值传递可以在进入函数体内部的时候就已经实现对象的复制，内存的申请，避免了代码冗余，而无异常的 swap 可以提供强异常安全保证，至于自赋值，这里就更不存在了，因为函数体内部的对象完全是一个新对象。
 
 
 
