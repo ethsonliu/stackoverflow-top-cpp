@@ -144,7 +144,7 @@ public:
 
 现在来看看它是怎么解决上面那三个问题的。
 
-值传递可以在进入函数体内部的时候就已经实现对象的复制，内存的申请，避免了代码冗余，而无异常的 swap 可以提供强异常安全保证，至于自赋值，这里就更不存在了，因为函数体内部的对象完全是一个新对象。
+赋值运算符（=）的参数是值传递，这样可以在进入函数体内部的时候就已经实现内存的申请和对象的复制，避免了代码冗余，而无异常的 swap 可以提供强异常安全保证，至于自赋值，这里就更不存在了，因为函数体内部的对象完全是一个新对象。
 
 其中，swap 被定义为 public friend，理由可参见 [https://stackoverflow.com/questions/5695548/public-friend-swap-member-function](https://stackoverflow.com/questions/5695548/public-friend-swap-member-function) 和 Effective C++ 条款 25。
 
