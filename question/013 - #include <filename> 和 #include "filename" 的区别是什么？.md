@@ -6,16 +6,12 @@
 
 ## 回答
 
-一般会去三个地方找：
+`<filename>`一般会去系统路径和编译器预指定的路径找。比如 Windows 系统库的`#include <Windows.h>`，Linux 系统库的`#include <sys/socket.h>`，C/C++ 编译器已预指定的的标准库`#include <stdio.h>`。GCC 命令中`-I`会给编译器另自指定一条搜寻路径，该路径下的文件，也会用`<>`包含。
 
-1. 标准系统库路径。比如`stdio.h`，`iostream`所在的路径就是标准系统库路径。
-2. 当前文件的所在路径。比如你当前的文件所在路径是`~/project/myproject/src/`，那么`~/project/myproject/src/`就是这个文件的所在路径。
-3. 自定义添加的额外路径。比如`-I`指令指定的路径。
+`"filename"`一般会去工程目录下找，如果你的工程下有一个文件`~/MyProject/src/widget.h`里包含了`#include "simple_dialog.h"`，那么它会去`~/MyProject/src/`下去找，找不到再依照`<>`查找的路径去找。
 
-`#include <filename>`，预处理器的查找顺序是：1->3->2。
+总的来说，
 
-`#include "filename"`，预处理器的查找顺序是：2->3->1。
+- 系统库、标准库、编译器指定的路径（比如 GCC 的`-I`命令），都以`#include <>`来包含文件。
+- 程序员自己创建的工程文件，都以`#include ""`来包含。
 
->译注：对于上面的顺序，1 和 2 是可以保证的，但 3 只是个人猜测，若有不对，请指正。
-
-换句话说，对于标准库文件，用`#include <filename>`，其它的都用`#include "filename"`。
