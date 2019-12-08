@@ -5,6 +5,4 @@
  1. <https://stackoverflow.com/questions/tagged/c%2b%2b?tab=Votes>
  2. <https://stackoverflow.com/questions/tagged/c?tab=Votes>
  
-注意，翻译并不会单纯地把问题之下的内容一字一句地翻译出来，考虑到语句的连贯、内容的排版和易读性，会适当地掐头去尾。
-
-当然，因疏忽和能力有限，可能出现有些翻译不准确、重点部分遗漏未翻译、汉字打错、语句不通顺等等情况，可以 Issue 或者 Pull requests 协助修正。
+翻译只是我们最小的一个目的，最终的希望是，能够让我们理解地更深和更广。所以不必拘泥于“翻译”本身，而应该让 question 变为 article，个人精力和时间实在有限，希望能有更多人参与。
