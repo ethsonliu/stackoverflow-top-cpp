@@ -100,7 +100,7 @@ std::ios_base::sync_with_stdio(false);
 
 这样就可以取消 cin 于 stdin 的同步了。
 
-通常，输入流都是从缓冲区读取内容，而基于 `stdio` 和 `iostreams` 的 `FILE*` 都有自己的缓冲区，如果一起使用就会出现未知的问题。比如：
+通常，输入流都是从缓冲区读取内容，而 `stdio` 和 `iostreams` 都有自己的缓冲区，如果一起使用就会出现未知的问题。比如：
 
 ```c++
 int myvalue1;
