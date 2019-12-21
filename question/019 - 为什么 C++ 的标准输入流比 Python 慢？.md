@@ -59,7 +59,7 @@ if delta_sec >= 0:
        lines_per_sec))
 ```
 
-下面是实验结果：
+**下面是实验结果**
 
 ```shell
 $ cat test_lines | ./readline_test_cpp
