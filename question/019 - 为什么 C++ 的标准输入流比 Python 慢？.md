@@ -91,3 +91,24 @@ Python:Read 5570000 lines in  1 seconds. LPS: 5570000
 ```
 
 ## 回答
+
+默认情况下，cin 与 stdin 总是保持同步的，也就是说这两种方法可以混用，而不必担心文件指针混乱，同时 cout 和 stdout 也一样，两者混用不会输出顺序错乱。正因为这个兼容性的特性，导致 cin 有许多额外的开销，如何禁用这个特性呢？
+
+```c++
+std::ios_base::sync_with_stdio(false);
+```
+
+这样就可以取消 cin 于 stdin 的同步了。
+
+通常，输入流都是从缓冲区读取内容，而基于 `stdio` 和 `iostreams` 的 `FILE*` 都有自己的缓冲区，如果一起使用就会出现未知的问题。比如：
+
+```c++
+int myvalue1;
+cin >> myvalue1;
+int myvalue2;
+scanf("%d",&myvalue2);
+```
+
+如果在控制台同时输入`1 2`，按我们的预想，cin 拿到的值是 1，scanf 拿到的是 2，但事实可能并非如此：scanf 可能拿不到 2，因为 2 这个值在 cin 的缓冲区那里，scanf 缓冲区什么也没有。（如果调用 `std::ios_base::sync_with_stdio(false)`，程序就需要考虑到这点，以免出现未知错误）
+
+为了避免这种情况，C++ 默认使 cin 与 stdio 同步，这样就不会出现问题。
