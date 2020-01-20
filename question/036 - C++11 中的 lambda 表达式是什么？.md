@@ -99,7 +99,7 @@ void func4(std::vector<double>& v) {
 
 ### 捕获变量（Capturing variables）
 
-那 lambda 如何在函数体内使用外部的变量呢？其实很简单。
+那 lambda 如何在函数体内使用外部的变量呢？其实很简单，在 `[]` 中填入你想捕获的就可以了。
 
 ```c++
 void func5(std::vector<double>& v, const double& epsilon) {
