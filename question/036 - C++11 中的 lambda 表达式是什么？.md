@@ -46,3 +46,75 @@ void func2(std::vector<int>& v) {
 但是 C++ 03 （C++ 11 已经支持）是不支持这种用法的，因为 f 不能应用于 [模板函数](https://en.cppreference.com/w/cpp/language/function_template)。
 
 ### C++ 11 新的解决方案
+
+C++ 11 的 lambda 提供了一种匿名函数，可以完美解决这个问题。
+
+```c++
+void func3(std::vector<int>& v) {
+  std::for_each(v.begin(), v.end(), [](int) { /* do something here*/ });
+}
+```
+
+### lambda 的返回类型
+
+如果你的 lambda 很简单，那么编译器可以自动推断出你的返回类型，
+
+```c++
+void func4(std::vector<double>& v) {
+  std::transform(v.begin(), v.end(), v.begin(),
+                 [](double d) { return d < 0.00001 ? 0 : d; }
+                 );
+}
+```
+
+但如果你的 lambda 比较复杂，比如下面这样，返回类型既可能是整型也可能是浮点型，
+
+```c++
+void func4(std::vector<double>& v) {
+    std::transform(v.begin(), v.end(), v.begin(),
+        [](double d) {
+            if (d < 0.0001) {
+                return 0;
+            } else {
+                return d;
+            }
+        });
+}
+```
+
+那么你可以手动给它执行你要返回的类型，你需要这么做，
+
+```c++
+void func4(std::vector<double>& v) {
+    std::transform(v.begin(), v.end(), v.begin(),
+        [](double d) -> double {
+            if (d < 0.0001) {
+                return 0;
+            } else {
+                return d;
+            }
+        });
+}
+```
+
+### 捕获变量（Capturing variables）
+
+那 lambda 如何在函数体内使用外部的变量呢？其实很简单。
+
+```c++
+void func5(std::vector<double>& v, const double& epsilon) {
+    std::transform(v.begin(), v.end(), v.begin(),
+        [epsilon](double d) -> double {
+            if (d < epsilon) {
+                return 0;
+            } else {
+                return d;
+            }
+        });
+}
+```
+
+
+
+
+
