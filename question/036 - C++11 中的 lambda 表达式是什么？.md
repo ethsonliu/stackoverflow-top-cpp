@@ -82,7 +82,7 @@ void func4(std::vector<double>& v) {
 }
 ```
 
-那么你可以手动给它执行你要返回的类型，你需要这么做，
+那么你可以手动给它指定你要返回的类型，你需要这么做，
 
 ```c++
 void func4(std::vector<double>& v) {
@@ -114,7 +114,14 @@ void func5(std::vector<double>& v, const double& epsilon) {
 }
 ```
 
-
-
+- [] 不捕获任何变量
+- [epsilon] 仅捕获 epsilon 变量，且是值捕获
+- [v, epsilon] 仅捕获 v 和 epsilon 变量，且是值捕获（多个变量以 `,` 隔开）
+- [&epsilon] 引用捕获 epsilon 变量
+- [&] 引用捕获所有变量
+- [=] 值捕获所有变量
+- [&, epsilon] 除了 epsilon 是值捕获，其它的都引用捕获
+- [=, &epsilon] 除了 epsilon 是引用捕获，其它的都值捕获
+- [this] 值捕获 this 指针
 
 
