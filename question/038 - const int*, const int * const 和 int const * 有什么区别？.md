@@ -23,7 +23,7 @@
 当然还有更复杂的，
 
 - `int ** p` - p is pointer to pointer to int
-- `int ** const p` - p is const pointer to a pointer to an int
-- `int * const * p` - p is pointer to a const pointer to an int
-- `int const ** p` - p is pointer to a pointer to a const int
-- `int * const * const p` - p is const pointer to a const pointer to an int
+- `int ** const p` - p is const pointer to pointer to int
+- `int * const * p` - p is pointer to const pointer to int
+- `int const ** p` - p is pointer to pointer to const int
+- `int * const * const p` - p is const pointer to const pointer to int
