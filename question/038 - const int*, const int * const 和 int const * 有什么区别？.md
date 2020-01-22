@@ -10,8 +10,8 @@
 
 对于 `const` 关键词，直接填入即可，例如，
 
-- `int * p`  p is pointer to int
-- `int const * p` p is pointer to const int
+- `int * p` - p is pointer to int
+- `int const * p` - p is pointer to const int
 - `int * const p` - p is const pointer to int
 - `int const * const p` - p is const pointer to const int
 
@@ -22,8 +22,8 @@
 
 当然还有更复杂的，
 
-- `int ** p` p is pointer to pointer to int
-- `int ** const p` p is const pointer to a pointer to an int
-- `int * const * p` p is pointer to a const pointer to an int
-- `int const ** p` p is pointer to a pointer to a const int
-- `int * const * const p` p is const pointer to a const pointer to an int
+- `int ** p` - p is pointer to pointer to int
+- `int ** const p` - p is const pointer to a pointer to an int
+- `int * const * p` - p is pointer to a const pointer to an int
+- `int const ** p` - p is pointer to a pointer to a const int
+- `int * const * const p` - p is const pointer to a const pointer to an int
