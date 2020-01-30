@@ -2,6 +2,6 @@
 
 ## 问题
 
-
+C++ 中的 public、private 和 protected 继承有什么区别？
 
 ## 回答
