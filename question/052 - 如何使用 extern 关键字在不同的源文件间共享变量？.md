@@ -32,4 +32,9 @@ void func()
 #include <iostream>
 
 int a = 1;
+
+void func()
+{
+    a++;
+}
 ```
