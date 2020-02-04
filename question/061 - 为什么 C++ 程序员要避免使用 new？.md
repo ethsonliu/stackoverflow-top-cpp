@@ -30,4 +30,4 @@ std::string someString(...);
 
 这就是 [RAII](http://en.wikipedia.org/wiki/Resource_Acquisition_Is_Initialization) 技术。当离开它的作用域的时候，`someString` 便会自动析构。
 
-C++11 完善了智能指针，可以更方便地帮助我们实现 RAII。
+而且 C++11 完善了智能指针，旨在可以更方便地帮助我们实现 RAII，我们可以适当地加以利用。
