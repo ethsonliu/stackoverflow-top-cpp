@@ -2,7 +2,7 @@
 
 ## 问题
 
-在 C++11 中下面的两条语句是等同的，
+在 C++11 中下面的两条语句表达的都是一个意思，
 
 ```c++
 typedef int MyInt;
@@ -17,7 +17,7 @@ emplate<class T>
 using MyType = AnotherType<T, MyAllocatorType>;
 ```
 
-`typedef` 和 `using` 有什么区别？
+那么 `typedef` 和 `using` 到底还有什么其它区别？
 
 ## 回答
 
