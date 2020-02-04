@@ -8,3 +8,26 @@
 
 ## 回答
 
+C++ 并不带自动 GC。任何的 `new` 都需要有对应的 `delete`，否则就会有内存泄漏。
+
+```c++
+std::string *someString = new std::string(...);
+
+// Do stuff
+
+delete someString;
+```
+
+上面的语句看着没什么问题，但有个陷阱 - 如果 `Do stuff` 里发生异常了呢？`delete` 就不会被调用。
+
+我们应该尽量这么用，
+
+```c++
+std::string someString(...);
+
+// Do stuff
+```
+
+这就是 [RAII](http://en.wikipedia.org/wiki/Resource_Acquisition_Is_Initialization) 技术。当离开它的作用域的时候，`someString` 便会自动析构。
+
+C++11 完善了智能指针，可以更方便地帮助我们实现 RAII。
