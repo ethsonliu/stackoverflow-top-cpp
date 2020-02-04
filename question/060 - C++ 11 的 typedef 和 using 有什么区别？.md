@@ -21,4 +21,4 @@ using MyType = AnotherType<T, MyAllocatorType>;
 
 ## 回答
 
-除了 `using` 还可以在模板中使用，其它的都是等同的。
+没有了，除了 `using` 还可以在模板中使用，其它的都是等同的。
