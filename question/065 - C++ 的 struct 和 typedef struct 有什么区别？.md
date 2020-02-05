@@ -21,9 +21,7 @@ struct Foo { ... };
 Foo x;
 ```
 
-这样的用法会报错，必须得显示表明 `struct`，即 `struct Foo x;`。
-
-每次都加 `struct Foo` 太繁琐了，所以可以加个 `typedef` 来避免。
+这样的用法会报错，必须得显示表明 `struct`，即 `struct Foo x`。但每次都加 `struct Foo` 太繁琐了，所以可以加个 `typedef` 来避免。
 
 ```c
 struct Foo { ... };
