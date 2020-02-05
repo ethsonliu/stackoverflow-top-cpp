@@ -16,7 +16,7 @@ typedef struct { ... } Foo;
 
 C 标准（[C89 §3.1.2.3](http://port70.net/~nsz/c/c89/c89-draft.txt), [C99 §6.2.3](http://port70.net/~nsz/c/c99/n1256.html#6.2.3), [C11 §6.2.3](http://port70.net/~nsz/c/c11/n1570.html#6.2.3)）把不同类型的标识符（identifier）分到不同的命名空间（namespace）。
 
-例如标签标识符（tag identifiers）struct/union/enum，普通标识符（ordinary identifiers）以 typedef 修饰和其它常见的。
+例如标签标识符（tag identifiers）struct/union/enum 在标签命名空间，普通标识符（ordinary identifiers），有 typedef 修饰的别名等等其它在普通命名空间。
 
 因此 C 语言中，
 
