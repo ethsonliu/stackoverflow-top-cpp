@@ -29,7 +29,7 @@ private:
 
 public:
 
-    MyClass() : counter(0) {}
+    MyClass() { x = y = 0; }
 
     void Foo()
     {
