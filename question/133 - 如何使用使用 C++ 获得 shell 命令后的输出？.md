@@ -2,6 +2,10 @@
 
 ## 问题
 
+如何使用使用 C++ 获得 shell 命令后的输出？比如，
 
+```c++
+std::string result = system("./some_command");
+```
 
 ## 回答
