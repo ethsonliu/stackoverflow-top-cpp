@@ -6,8 +6,21 @@
 
 ## 回答
 
-首先，匿名命名空间比关键词 static 的功能更丰富，因此我们更推荐使用前者。
+首先，匿名命名空间比关键词 static 的功能更丰富，因此我们更推荐使用前者。比如，static 无法修饰类（class/struct），
 
+```c++
+// 非法代码
+static class sample_class { /* class body */ };
+static struct sample_struct { /* struct body */ };
+
+
+// 合法代码
+namespace 
+{  
+    class sample_class { /* class body */ };
+    struct sample_struct { /* struct body */ };
+}
+```
 
 参考：
 
