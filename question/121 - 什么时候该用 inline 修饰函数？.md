@@ -41,11 +41,8 @@ private:
 
 3. 怎么让编译器不去 inline 函数？
 
-    
+    在 GCC 编译器下，可以使用 `__attribute__(( noinline ))` 修饰；而在 Visual Studio 下，则是 `__declspec(noinline)`。
 
 4. 如果一个 inline 被多个线程调用，会有性能上的影响么？
 
-
-
-
-
+    完全不会！
