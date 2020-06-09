@@ -38,6 +38,8 @@ t.close()
 
 ## 回答
 
+对此有篇文章写得很好，参见 <http://insanecoding.blogspot.com/2011/11/how-to-read-in-file-in-c.html>，
+
 ```c++
 string get_file_string() {
     std::ifstream ifs("path_to_file");
