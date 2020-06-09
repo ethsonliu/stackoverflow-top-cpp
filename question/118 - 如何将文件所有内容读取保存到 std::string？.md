@@ -41,18 +41,46 @@ t.close()
 对此有篇文章写得很好，参见 <http://insanecoding.blogspot.com/2011/11/how-to-read-in-file-in-c.html>，
 
 ```c++
-string get_file_string() {
-    std::ifstream ifs("path_to_file");
-    return string((std::istreambuf_iterator<char>(ifs)),
-                  (std::istreambuf_iterator<char>()));
-}
+#include <string>
+#include <cstdio>
 
-string get_file_string2() {
-    ifstream inFile;
-    inFile.open("path_to_file"); // open the input file
-
-    stringstream strStream;
-    strStream << inFile.rdbuf(); // read the file
-    return strStream.str(); // str holds the content of the file
+std::string get_file_contents(const char *filename)
+{
+  std::FILE *fp = std::fopen(filename, "rb");
+  if (fp)
+  {
+    std::string contents;
+    std::fseek(fp, 0, SEEK_END);
+    contents.resize(std::ftell(fp));
+    std::rewind(fp);
+    std::fread(&contents[0], 1, contents.size(), fp);
+    std::fclose(fp);
+    return(contents);
+  }
+  throw(errno);
 }
 ```
+
+或者
+
+```c++
+#include <fstream>
+#include <string>
+
+std::string get_file_contents(const char *filename)
+{
+  std::ifstream in(filename, std::ios::in | std::ios::binary);
+  if (in)
+  {
+    std::string contents;
+    in.seekg(0, std::ios::end);
+    contents.resize(in.tellg());
+    in.seekg(0, std::ios::beg);
+    in.read(&contents[0], contents.size());
+    in.close();
+    return(contents);
+  }
+}
+```
+
+皆可。
