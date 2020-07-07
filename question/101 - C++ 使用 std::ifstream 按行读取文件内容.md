@@ -27,4 +27,29 @@ std::ifstream infile("thefile.txt");
 
 接着有两种方法可以实现，
 
-1. 
+1. 按空格和换行符进行分割
+
+```c++
+int a, b;
+while (infile >> a >> b)
+{
+    // process pair (a,b)
+}
+```
+
+2. 读取每行，然后按空格分割
+
+```c++
+#include <sstream>
+#include <string>
+
+std::string line;
+while (std::getline(infile, line))
+{
+    std::istringstream iss(line);
+    int a, b;
+    if (!(iss >> a >> b)) { break; }
+
+    // process pair (a,b)
+}
+```
