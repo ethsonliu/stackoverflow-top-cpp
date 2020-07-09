@@ -6,7 +6,7 @@
 
 ## 回答
 
-先参考整理的右左法则：https://github.com/EthsonLiu/personal-notes/blob/master/cpp/%E6%8C%87%E9%92%88%E5%8F%B3%E5%B7%A6%E6%B3%95%E5%88%99.md
+先参考翻译的文章：[读懂 C 的类型声明（译）](https://ethsonliu.com/2020/04/reading-c-type-declarations.html)
 
 对于 `const` 关键词，直接填入即可，例如，
 
