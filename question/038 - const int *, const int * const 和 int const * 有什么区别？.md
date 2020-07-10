@@ -6,9 +6,7 @@
 
 ## 回答
 
-先参考翻译的文章：[读懂 C 的类型声明（译）](https://ethsonliu.com/2020/04/reading-c-type-declarations.html)
-
-对于 `const` 关键词，直接填入即可，例如，
+请先阅读这篇文章：[读懂 C 的类型声明（译）](https://ethsonliu.com/2020/04/reading-c-type-declarations.html)，接着可以看下下面的例子。
 
 - `int * p` - p is pointer to int
 - `int const * p` - p is pointer to const int
