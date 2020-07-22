@@ -9,3 +9,4 @@
 参考：
 
 - [Pointer aliasing](https://en.wikipedia.org/wiki/Pointer_aliasing)
+- [C/C++ Strict Alias 小记](https://blog.csdn.net/dbzhang800/article/details/6720141)
