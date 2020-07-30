@@ -20,7 +20,7 @@ enum Animal { dog, cat, bird, human }; // enum
 
 两者的区别如下，
 
-1. 作用域不同
+**一：作用域不同**
 
 enum 中的 { } 大括号并没有将枚举成员的可见域限制在大括号内，导致 enum 成员曝露到了上一级作用域中。
 
@@ -54,4 +54,6 @@ std::cout << blue << std::endl; // 报错，不可以直接访问
 std::cout << Color1::blue << std::endl; // 通过，使用域运算符来访问
 ```
 
+## 参考
 
+- [C++11 的 enum class & enum struct & enum](https://blog.csdn.net/sanoseiichirou/article/details/50180533)
