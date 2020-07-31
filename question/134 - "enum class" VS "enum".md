@@ -54,6 +54,25 @@ std::cout << blue << std::endl; // 报错，不可以直接访问
 std::cout << Color1::blue << std::endl; // 通过，使用域运算符来访问
 ```
 
+**二：隐式转换**
+
+```c++
+enum Color {red, blue};
+enum class Animal {dog, cat};
+
+int main()
+{
+    Color myColor = red;
+    Animal myAnimal = Animal::dog;
+    
+    int number = myColor; // 可以隐式转换
+    number = myAnimal; // 错误，不允许隐式转换
+    number = static_cast<int>(myAnimal); // 正确，显示转换
+}
+```
+
+**三：**
+
 ## 参考
 
 - [C++11 的 enum class & enum struct & enum](https://blog.csdn.net/sanoseiichirou/article/details/50180533)
