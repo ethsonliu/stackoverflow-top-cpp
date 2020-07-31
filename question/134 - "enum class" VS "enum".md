@@ -71,7 +71,18 @@ int main()
 }
 ```
 
-**三：**
+**三：指定底层所使用的数据类型**
+
+enum 无法指定数据类型，导致我们无法明确枚举类型所占的内存大小。这种麻烦在结构体当中尤为突出，特别是当我们需要内存对齐和填充处理的时候。
+
+其次，当我们使用 enum 时，我们无法决定编译器底层是如何对待 enum 的（比如：signed 和 unsigned）。
+
+而标准规定，enum class 默认的底层数据类型是 int，也可以自己手动指定数据类型，语法如下，
+
+```c++
+enum class color:unsigned char {red, blue};
+enum calss colorb:long long {yellow, black};
+```
 
 ## 参考
 
