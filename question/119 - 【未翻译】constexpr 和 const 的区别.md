@@ -4,9 +4,26 @@
 
 constexpr 和 const 之间有什么区别？
 
-1. 什么情况下只能使用其中的某一个？
-2. 什么情况下可以同时使用两者？又该如何选择？
-
 ## 回答
 
-- https://www.zhihu.com/question/35614219
+**对变量来说，**
+
+const 表示的只是这个变量不可修改，但并未限定这个变量是编译期常量还是运行期常量；而 constexpr 之能是编译期常量。
+
+```c++
+const int kSize = 1; // 编译期常量
+
+void func()
+{
+    const int kRandomNumber = get_a_random_number(); // 运行期常量
+    ...
+    ...
+}
+```
+
+对于 kSize，你既可以用 const 修饰，也可以用 constexpr。但对于 kRandomNumber 你只能用 const。
+
+**对函数来说，**
+
+
+
