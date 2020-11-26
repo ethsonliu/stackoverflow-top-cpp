@@ -48,13 +48,12 @@ int main()
     std::array<int, func(cei)> arr3; // 没问题
     std::array<int, func(10)>  arr4; // 没问题
 
-    // 传入的参数如果不能在编译时期计算出来，那么 constexpr 修饰的函数就和普通函数一样，
-    // 所以下面的调用没问题。不过，我们不必因此而写两个版本，所以如果函数体适用于 constexpr 函数
-    // 的条件，可以尽量加上 constexpr。
-    func(i);
+    func(i); // 直接使用，也是没问题的
 
     return 0;
 }
 ```
+
+constexpr 修饰的函数，简单的来说，如果其传入的参数可以在编译时期计算出来，那么这个函数就会产生编译时期的值。但是，传入的参数如果不能在编译时期计算出来，那么 constexpr 修饰的函数就和普通函数一样了，比如上面代码直接调用了 `func(i)`。不过，我们不必因此而写两个版本，所以如果函数体适用于 constexpr 函数的条件，可以尽量加上 constexpr。
 
 参考：<https://www.zhihu.com/question/35614219>
