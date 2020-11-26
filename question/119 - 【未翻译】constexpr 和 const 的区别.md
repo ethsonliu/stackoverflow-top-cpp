@@ -21,9 +21,11 @@ void func()
 }
 ```
 
-对于 kSize，你既可以用 const 修饰，也可以用 constexpr。但对于 kRandomNumber 你只能用 const。
+对于 kSize，你既可以用 const 修饰，也可以用 constexpr。但对于 kRandomNumber，你只能用 const。
 
 **对函数来说，**
 
+const 修饰的函数一般都是成员函数，用来表示这个函数不会对成员变量产生写操作，这点很好理解。
 
+我们重点来看 constexpr。
 
