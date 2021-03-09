@@ -51,7 +51,7 @@ enum class Color1 { red, green, blue }; // 没问题，可以编译使用
 enum class Color2 { red, green, blue };
 
 std::cout << blue << std::endl; // 报错，不可以直接访问
-std::cout << Color1::blue << std::endl; // 通过，使用域运算符来访问
+std::cout << static_cast<int>(Color1::blue) << std::endl; // 通过，使用域运算符来访问
 ```
 
 **二：隐式转换**
@@ -81,7 +81,7 @@ enum 无法指定数据类型，导致我们无法明确枚举类型所占的内
 
 ```c++
 enum class color:unsigned char {red, blue};
-enum calss colorb:long long {yellow, black};
+enum class color:long long {yellow, black};
 ```
 
 ## 参考
