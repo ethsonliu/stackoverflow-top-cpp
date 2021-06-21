@@ -6,7 +6,9 @@
 
 ## 回答
 
+
+
 参考：
 
-- [Pointer aliasing](https://en.wikipedia.org/wiki/Pointer_aliasing)
 - [C/C++ Strict Alias 小记](https://blog.csdn.net/dbzhang800/article/details/6720141)
+- [What is the Strict Aliasing Rule and Why do we care?](https://gist.github.com/shafik/848ae25ee209f698763cffee272a58f8)
