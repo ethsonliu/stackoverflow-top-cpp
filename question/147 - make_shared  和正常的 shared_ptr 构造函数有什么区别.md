@@ -22,4 +22,4 @@ shared_ptr 对象会管理两部分内容，
 
 当调用 make_shared 的时候，会申请一份足够大的内存同时给控制块和对象使用。而 shared_ptr 构造函数会分别为控制块和对象调用内存申请，详情可以参考 [cpprefrence - implementation notes](http://en.cppreference.com/w/cpp/memory/shared_ptr)。
 
-当然 make_shared 也是有弊端的。当 shared_ptr 都离开了各自的作用域，被管理的对象也无法被析构。只有所有的 weak_ptr 也都离开了各自的作用域，这时候，一次申请的内存才会被释放掉。
+当然 make_shared 这样的做法也是有弊端的。当 shared_ptr 都离开了各自的作用域，被管理的对象也无法被析构。只有所有的 weak_ptr 也都离开了各自的作用域，这时候，一次申请的内存才会被释放掉。
