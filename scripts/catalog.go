@@ -27,7 +27,7 @@ func main() {
 		if info.IsDir() || !strings.Contains(info.Name(), ".md") {
 			return nil
 		}
-		ctl.WriteString(fmt.Sprintf("[%s](%s)\n\n", strings.Trim(info.Name(), "[]"), strings.ReplaceAll(path, " ", "%20")))
+		ctl.WriteString(fmt.Sprintf("- [%s](%s)\n\n", strings.Trim(info.Name(), "[]"), strings.ReplaceAll(path, " ", "%20")))
 		return nil
 	})
 	readmeS = splits[0] + flag + ctl.String() + flag + splits[2]
