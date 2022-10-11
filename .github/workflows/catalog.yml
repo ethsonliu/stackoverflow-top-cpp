@@ -23,8 +23,8 @@ jobs:
       
     - name: Commit files
       run: |
-        git config --local user.name "auto-catalog[bot]"
-        git config --local user.email "auto-catalog[bot]@users.noreply.github.com"
+        git config --local user.name "minoic-auto-catalog[bot]"
+        git config --local user.email "minoic-auto-catalog[bot]@users.noreply.github.com"
         git commit -a -m 'Automated catalog update'
       continue-on-error: true
     
@@ -33,6 +33,6 @@ jobs:
       with:
         title: '[Bot] Automated catalog update'
         committer: GitHub <noreply@github.com>
-        author: auto-catalog[bot] <auto-catalog[bot]@users.noreply.github.com>
+        author: minoic-auto-catalog[bot] <minoic-auto-catalog[bot]@users.noreply.github.com>
         # 对应的上传分支
-        branch: t/bot/auto-catalog
+        branch: t/bot/minoic-auto-catalog
