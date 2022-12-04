@@ -1,0 +1,17 @@
+name: markdown-auto-catalog
+
+on:
+  push:
+    branches: [ "master" ]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: minoic/markdown-auto-catalog@v1.0.1
+        with:
+          content-path: 'question'
+          document-path: 'README.md'
+          filter: '\(.*\).md'
+        continue-on-error: true
